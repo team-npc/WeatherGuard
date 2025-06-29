@@ -19,6 +19,7 @@ import {
     X
 } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -47,14 +48,14 @@ interface LocationResult {
 }
 
 // Import components dynamically to avoid auto-removal
-const EnhancedLocationSearch = require('@/components/Map/EnhancedLocationSearch').default;
-const AlertsDropdown = require('@/components/Alerts/AlertsDropdown').default;
-const TrafficInfo = require('@/components/Map/TrafficInfo').default;
-const AuthModal = require('@/components/Auth/AuthModal').default;
+import EnhancedLocationSearch from '@/components/Map/EnhancedLocationSearch';
+import AlertsDropdown from '@/components/Alerts/AlertsDropdown';
+import TrafficInfo from '@/components/Map/TrafficInfo';
+import AuthModal from '@/components/Auth/AuthModal';
 
 export default function Dashboard() {
   // Get authentication state
-  const { currentUser, userProfile, logout } = useAuth();
+  const { currentUser, logout } = useAuth();
 
   // Map state
   const [mapCenter, setMapCenter] = useState<[number, number]>([33.2098, -87.5692]); // Tuscaloosa, AL
@@ -135,7 +136,7 @@ export default function Dashboard() {
   const initializeEmergencyDetection = () => {
     // Device motion detection for panic situations
     if (typeof window !== 'undefined' && 'DeviceMotionEvent' in window) {
-      let shakeThreshold = 15;
+      const shakeThreshold = 15;
       let lastShake = 0;
 
       const handleDeviceMotion = (event: DeviceMotionEvent) => {
@@ -217,7 +218,7 @@ export default function Dashboard() {
 
   const checkForEmergencyConditions = () => {
     const now = Date.now();
-    let newTriggers = { ...emergencyTriggers };
+    const newTriggers = { ...emergencyTriggers };
     let newLevel: 'low' | 'medium' | 'high' | 'critical' = 'low';
 
     // Check for severe weather threats
@@ -295,7 +296,7 @@ export default function Dashboard() {
     sendEmergencyAlerts(emergencyEvent);
   };
 
-  const sendEmergencyAlerts = async (event: any) => {
+  const sendEmergencyAlerts = async (event: { trigger: string; level: string; location: { lat: number; lng: number } }) => {
     const currentLocation = {
       lat: mapCenter[0],
       lng: mapCenter[1],
@@ -421,7 +422,7 @@ Shared via WeatherGuard Safety App`;
           text: locationMessage,
           url: `https://maps.google.com/?q=${mapCenter[0]},${mapCenter[1]}`
         });
-      } catch (error) {
+      } catch {
         // Fallback to SMS
         const smsUrl = `sms:?body=${encodeURIComponent(locationMessage)}`;
         window.open(smsUrl, '_blank');
@@ -1146,7 +1147,7 @@ Shared via WeatherGuard Safety App`;
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-3">
-              <a href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+              <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
                 <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                   <span className="text-white text-xl">⛈️</span>
                 </div>
@@ -1154,7 +1155,7 @@ Shared via WeatherGuard Safety App`;
                   <h1 className="text-xl font-bold text-gray-900">WeatherGuard</h1>
                   <p className="text-xs text-blue-600 font-medium">Safety First</p>
                 </div>
-              </a>
+              </Link>
             </div>
 
             {/* Search Bar in Header */}

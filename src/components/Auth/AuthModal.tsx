@@ -39,8 +39,8 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
         await resetPassword(email);
         setMessage('Password reset email sent! Check your inbox.');
       }
-    } catch (error: any) {
-      setError(error.message || 'An error occurred');
+    } catch (error: unknown) {
+      setError((error as Error).message || 'An error occurred');
     } finally {
       setLoading(false);
     }
@@ -52,8 +52,8 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
     try {
       await loginWithGoogle();
       onClose();
-    } catch (error: any) {
-      setError(error.message || 'Google login failed');
+    } catch (error: unknown) {
+      setError((error as Error).message || 'Google login failed');
     } finally {
       setLoading(false);
     }
@@ -206,7 +206,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
           <div className="mt-6 text-center text-sm">
             {mode === 'login' ? (
               <>
-                <span className="text-gray-600">Don't have an account? </span>
+                <span className="text-gray-600">Don&apos;t have an account? </span>
                 <button
                   onClick={() => setMode('signup')}
                   className="text-blue-600 hover:text-blue-700 font-medium"

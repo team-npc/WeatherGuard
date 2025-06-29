@@ -561,18 +561,6 @@ export default function LocationSearch({
                   </div>
                 </li>
               ))}
-                          e.stopPropagation();
-                          onLocationPin(result);
-                        }}
-                        className="px-3 py-3 text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors focus:outline-none"
-                        title="Pin this location"
-                      >
-                        <MapPin className="h-4 w-4" />
-                      </button>
-                    )}
-                  </div>
-                </li>
-              ))}
             </ul>
           ) : (
             <div className="px-4 py-3 text-sm text-gray-500">

@@ -46,8 +46,7 @@ export default function AlertsDropdown({
   isOpen,
   onClose,
   weatherAlerts,
-  disasterEvents,
-  onLocationSelect
+  disasterEvents
 }: AlertsDropdownProps) {
   if (!isOpen) return null;
 
@@ -82,7 +81,7 @@ export default function AlertsDropdown({
         hour: '2-digit',
         minute: '2-digit'
       });
-    } catch (error) {
+    } catch {
       return 'Invalid date';
     }
   };

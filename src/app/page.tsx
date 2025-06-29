@@ -57,7 +57,7 @@ export default function Home() {
 
               {/* Main Headline */}
               <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
-                Your Family's
+                Your Family&apos;s
                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent block">
                   Safety Guardian
                 </span>
@@ -65,7 +65,7 @@ export default function Home() {
 
               {/* Subheadline */}
               <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
-                The world's most comprehensive emergency safety platform. Track loved ones, monitor weather threats,
+                The world&apos;s most comprehensive emergency safety platform. Track loved ones, monitor weather threats,
                 and coordinate emergency response—all in one intelligent app.
               </p>
 
@@ -262,7 +262,7 @@ export default function Home() {
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 The Emergency Preparedness
-                <span className="text-red-600 block">Crisis We're Solving</span>
+                <span className="text-red-600 block">Crisis We&apos;re Solving</span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 When disaster strikes, every second counts. Current solutions fail when families need them most.
@@ -294,7 +294,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900">Disconnected Information</h4>
-                      <p className="text-gray-600 text-sm">Weather apps don't show family locations, location apps ignore weather</p>
+                      <p className="text-gray-600 text-sm">Weather apps don&apos;t show family locations, location apps ignore weather</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -448,7 +448,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                Don't Wait for the
+                Don&apos;t Wait for the
                 <span className="block text-yellow-300">Next Emergency</span>
               </h2>
               <p className="text-xl md:text-2xl text-blue-100 mb-12 leading-relaxed">
@@ -510,7 +510,7 @@ export default function Home() {
                 </div>
               </div>
               <p className="text-gray-300 mb-6 max-w-md">
-                The world's most comprehensive emergency safety platform. Protecting families worldwide with real-time weather monitoring, location tracking, and instant threat assessment.
+                The world&apos;s most comprehensive emergency safety platform. Protecting families worldwide with real-time weather monitoring, location tracking, and instant threat assessment.
               </p>
               <div className="flex gap-4">
                 <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors cursor-pointer">
