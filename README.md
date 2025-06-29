@@ -331,8 +331,8 @@ npm run build:server
 ### Team NPC
 
 **Core Development Team:**
-- **Aditya** - Lead Developer & Project Architect
-- **Sunayana** - Frontend Developer & User Experience
+- **Aditya** - Frontend Developer & User Experience
+- **Sunayana** - Lead Developer & Project Architect
 - **Rohiith** - UI/UX Developer & Design Systems
 
 ### Development Workflow
