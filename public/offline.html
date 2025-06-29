@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Safety - Offline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 20px;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .features {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .features h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+        
+        .features ul {
+            list-style: none;
+        }
+        
+        .features li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4ade80;
+            font-weight: bold;
+        }
+        
+        .emergency-section {
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid rgba(239, 68, 68, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .emergency-section h3 {
+            color: #fca5a5;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .emergency-button {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px;
+            transition: background 0.3s;
+        }
+        
+        .emergency-button:hover {
+            background: #b91c1c;
+        }
+        
+        .retry-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        
+        .retry-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .status.offline {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        
+        .status.online {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🌩️</div>
+        <h1>Weather Safety - Offline Mode</h1>
+        <p>You're currently offline, but critical safety features are still available.</p>
+        
+        <div class="features">
+            <h3>🛡️ Available Offline Features</h3>
+            <ul>
+                <li>Emergency safety check-ins (will sync when online)</li>
+                <li>Cached location data and emergency contacts</li>
+                <li>Offline weather information (last known data)</li>
+                <li>Emergency mode activation</li>
+                <li>Critical safety notifications</li>
+            </ul>
+        </div>
+        
+        <div class="emergency-section">
+            <h3>🚨 Emergency Actions</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 15px;">
+                These actions work offline and will sync when connection is restored.
+            </p>
+            <button class="emergency-button" onclick="emergencyCheckin('safe')">
+                ✅ I'm Safe
+            </button>
+            <button class="emergency-button" onclick="emergencyCheckin('need_help')">
+                🆘 Need Help
+            </button>
+            <button class="emergency-button" onclick="emergencyCheckin('emergency')">
+                🚨 Emergency
+            </button>
+        </div>
+        
+        <button class="retry-button" onclick="checkConnection()">
+            🔄 Check Connection
+        </button>
+        
+        <button class="retry-button" onclick="goToDashboard()">
+            📱 Open Dashboard
+        </button>
+        
+        <div id="status" class="status offline">
+            🔴 Currently Offline - Emergency features available
+        </div>
+    </div>
+
+    <script>
+        // Check online status
+        function updateStatus() {
+            const status = document.getElementById('status');
+            if (navigator.onLine) {
+                status.className = 'status online';
+                status.innerHTML = '🟢 Back Online - Full features available';
+                setTimeout(() => {
+                    window.location.href = '/dashboard';
+                }, 2000);
+            } else {
+                status.className = 'status offline';
+                status.innerHTML = '🔴 Currently Offline - Emergency features available';
+            }
+        }
+        
+        // Emergency check-in function
+        function emergencyCheckin(status) {
+            const checkin = {
+                id: Date.now(),
+                status: status,
+                message: `Offline emergency check-in: ${status}`,
+                timestamp: new Date().toISOString(),
+                offline: true
+            };
+            
+            // Store in localStorage for later sync
+            const pendingCheckins = JSON.parse(localStorage.getItem('pendingCheckins') || '[]');
+            pendingCheckins.push(checkin);
+            localStorage.setItem('pendingCheckins', JSON.stringify(pendingCheckins));
+            
+            // Show confirmation
+            const messages = {
+                'safe': '✅ Safety check-in recorded! Will sync when online.',
+                'need_help': '🆘 Help request recorded! Will notify contacts when online.',
+                'emergency': '🚨 Emergency alert recorded! Will send immediately when online.'
+            };
+            
+            alert(messages[status]);
+            
+            // Try to register for background sync if available
+            if ('serviceWorker' in navigator && 'sync' in window.ServiceWorkerRegistration.prototype) {
+                navigator.serviceWorker.ready.then(registration => {
+                    return registration.sync.register('emergency-sync');
+                }).catch(err => {
+                    console.log('Background sync registration failed:', err);
+                });
+            }
+        }
+        
+        // Check connection
+        function checkConnection() {
+            updateStatus();
+            if (navigator.onLine) {
+                // Try to fetch a small resource to verify actual connectivity
+                fetch('/favicon.ico', { method: 'HEAD', cache: 'no-cache' })
+                    .then(() => {
+                        window.location.href = '/dashboard';
+                    })
+                    .catch(() => {
+                        alert('Connection detected but server is unreachable. Please try again.');
+                    });
+            } else {
+                alert('Still offline. Please check your internet connection.');
+            }
+        }
+        
+        // Go to dashboard (will work if cached)
+        function goToDashboard() {
+            window.location.href = '/dashboard';
+        }
+        
+        // Listen for online/offline events
+        window.addEventListener('online', updateStatus);
+        window.addEventListener('offline', updateStatus);
+        
+        // Initial status check
+        updateStatus();
+        
+        // Periodic connection check
+        setInterval(updateStatus, 5000);
+    </script>
+</body>
+</html>

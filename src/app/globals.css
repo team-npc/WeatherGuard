@@ -24,3 +24,115 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Ensure proper z-index stacking for notifications */
+.leaflet-container {
+  z-index: 1;
+}
+
+.leaflet-control-container {
+  z-index: 1000;
+}
+
+/* Notification animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Safety notification styles */
+.safety-notification {
+  position: relative;
+  z-index: 9999 !important;
+  pointer-events: auto;
+}
+
+/* Ensure notifications appear above everything */
+#notification-container {
+  z-index: 9999 !important;
+  position: fixed !important;
+}
+
+/* Homepage enhancements */
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced button hover effects */
+.btn-primary {
+  @apply bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1;
+}
+
+.btn-primary:hover {
+  @apply from-blue-700 to-indigo-700;
+}
+
+/* Card hover effects */
+.feature-card {
+  @apply transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl;
+}
+
+/* Loading animations */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Gradient backgrounds */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+}
+
+.bg-gradient-secondary {
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+}
+
+/* Text shadows for better readability */
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.text-shadow-lg {
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

@@ -32,6 +32,17 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# database files
+*.db
+*.sqlite
+*.sqlite3
+weather-safety.db
+
+# logs
+logs/
+*.log
 
 # vercel
 .vercel
@@ -39,3 +50,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
