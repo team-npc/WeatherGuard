@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
 
 // Dynamically import the map component to avoid SSR issues
 const WeatherSafetyMap = dynamic(
@@ -52,8 +53,8 @@ const TrafficInfo = require('@/components/Map/TrafficInfo').default;
 const AuthModal = require('@/components/Auth/AuthModal').default;
 
 export default function Dashboard() {
-  // For demo purposes, we'll use a mock user
-  const currentUser = null; // This will be replaced with actual auth later
+  // Get authentication state
+  const { currentUser, userProfile, logout } = useAuth();
 
   // Map state
   const [mapCenter, setMapCenter] = useState<[number, number]>([33.2098, -87.5692]); // Tuscaloosa, AL
@@ -1227,12 +1228,37 @@ Shared via WeatherGuard Safety App`;
                 <Settings className="h-5 w-5" />
               </button>
 
-              <button
-                onClick={() => setShowAuthModal(true)}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
-              >
-                Log In
-              </button>
+              {currentUser ? (
+                <div className="flex items-center gap-3">
+                  <div className="text-sm">
+                    <span className="text-gray-600">Welcome, </span>
+                    <span className="font-medium text-gray-900">
+                      {currentUser.displayName || currentUser.email}
+                    </span>
+                  </div>
+                  <button
+                    onClick={async () => {
+                      if (confirm('Are you sure you want to log out?')) {
+                        try {
+                          await logout();
+                        } catch (error) {
+                          console.error('Logout failed:', error);
+                        }
+                      }
+                    }}
+                    className="px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={() => setShowAuthModal(true)}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                >
+                  Log In
+                </button>
+              )}
             </div>
 
             <div className="md:hidden flex items-center gap-2">
@@ -1777,18 +1803,35 @@ Shared via WeatherGuard Safety App`;
                   </div>
 
                   <div className="space-y-2">
-                    <button
-                      onClick={() => setShowFamilyModal(true)}
-                      className="w-full bg-blue-100 hover:bg-blue-200 text-blue-700 py-2 px-4 rounded-lg transition-colors"
-                    >
-                      + Add Family Member
-                    </button>
-                    <button
-                      onClick={() => setShowFamilyModal(true)}
-                      className="w-full bg-green-100 hover:bg-green-200 text-green-700 py-2 px-4 rounded-lg transition-colors"
-                    >
-                      + Add Emergency Contact
-                    </button>
+                    {currentUser ? (
+                      <>
+                        <button
+                          onClick={() => setShowFamilyModal(true)}
+                          className="w-full bg-blue-100 hover:bg-blue-200 text-blue-700 py-2 px-4 rounded-lg transition-colors"
+                        >
+                          + Add Family Member
+                        </button>
+                        <button
+                          onClick={() => setShowFamilyModal(true)}
+                          className="w-full bg-green-100 hover:bg-green-200 text-green-700 py-2 px-4 rounded-lg transition-colors"
+                        >
+                          + Add Emergency Contact
+                        </button>
+                      </>
+                    ) : (
+                      <div className="text-center py-4 px-4 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+                        <Users className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+                        <p className="text-sm text-gray-600 mb-3">
+                          Please log in to add family members and emergency contacts
+                        </p>
+                        <button
+                          onClick={() => setShowAuthModal(true)}
+                          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                        >
+                          Log In to Add Contacts
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -1807,7 +1850,7 @@ Shared via WeatherGuard Safety App`;
       )}
 
       {/* Family Setup Modal */}
-      {showFamilyModal && (
+      {showFamilyModal && currentUser && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
             <div className="p-6">

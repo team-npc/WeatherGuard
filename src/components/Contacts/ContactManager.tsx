@@ -19,6 +19,8 @@ import { Contact, ContactForm } from '@/types';
 interface ContactManagerProps {
   userId: number;
   className?: string;
+  isAuthenticated?: boolean;
+  onLoginRequired?: () => void;
 }
 
 interface ContactFormModalProps {
@@ -181,7 +183,12 @@ function ContactFormModal({ isOpen, onClose, onSave, editingContact }: ContactFo
   );
 }
 
-export default function ContactManager({ userId, className = '' }: ContactManagerProps) {
+export default function ContactManager({
+  userId,
+  className = '',
+  isAuthenticated = true,
+  onLoginRequired
+}: ContactManagerProps) {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -305,13 +312,23 @@ export default function ContactManager({ userId, className = '' }: ContactManage
       <div className="p-6">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-lg font-semibold text-gray-900">Emergency Contacts</h2>
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <Plus className="h-4 w-4" />
-            Add Contact
-          </button>
+          {isAuthenticated ? (
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Plus className="h-4 w-4" />
+              Add Contact
+            </button>
+          ) : (
+            <button
+              onClick={onLoginRequired}
+              className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Plus className="h-4 w-4" />
+              Log In to Add
+            </button>
+          )}
         </div>
 
         {/* Filter Tabs */}
@@ -342,17 +359,26 @@ export default function ContactManager({ userId, className = '' }: ContactManage
               {filter === 'all' ? 'No contacts added' : `No ${filter} contacts`}
             </h3>
             <p className="text-gray-600 mb-4">
-              {filter === 'all' 
+              {filter === 'all'
                 ? 'Add your emergency contacts and family members to stay connected during emergencies.'
                 : `No contacts configured for ${filter} notifications.`
               }
             </p>
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Add Your First Contact
-            </button>
+            {isAuthenticated ? (
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Add Your First Contact
+              </button>
+            ) : (
+              <button
+                onClick={onLoginRequired}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Log In to Add Contacts
+              </button>
+            )}
           </div>
         ) : (
           <div className="space-y-3">
