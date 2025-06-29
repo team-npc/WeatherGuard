@@ -1,8 +1,32 @@
-# Weather Safety App
+# WeatherGuard - Emergency Safety Platform
 
-A comprehensive emergency preparedness and family safety application that combines real-time weather monitoring, location tracking, and emergency communication tools.
+A comprehensive emergency preparedness and family safety application that combines real-time weather monitoring, location tracking, and emergency communication tools. Built for the Startup Competition with global coverage and enterprise-grade reliability.
 
-## 🌟 Features
+## 🎬 Recent Updates (Latest)
+
+### ✅ Website Branding & Messaging Improvements
+- **Consistent Logo**: Unified WeatherGuard logo across header, footer, and dashboard
+- **Honest Messaging**: Removed fake user statistics, replaced with real technical capabilities
+- **YouTube Demo**: Embedded interactive demo video with autoplay functionality
+- **Simplified CTA**: Single "Try Live Demo" button for better user experience
+- **Professional Footer**: Added comprehensive footer to dashboard page matching homepage
+
+### ✅ Technical Enhancements
+- **Bold Emergency Messaging**: "Don't Wait for the Next Emergency" prominently displayed
+- **Platform Capabilities**: Highlighting Global Coverage, Multi-API Resilience, Offline Functionality
+- **Responsive Design**: Optimized for all devices with consistent branding
+- **Navigation Improvements**: Seamless navigation between homepage and dashboard
+
+## � Live Demo
+
+**Try the platform now**: [http://localhost:3000](http://localhost:3000)
+- **Interactive Demo Video**: Watch the embedded YouTube demonstration
+- **Global Location Search**: Test with "Tokyo", "London", "Sydney", "Eiffel Tower"
+- **Emergency Mode**: Click the 🚨 button to activate emergency features
+- **Family Safety Features**: Experience location sharing and safety check-ins
+- **Offline Functionality**: Disable network to test offline capabilities
+
+## �🌟 Features
 
 ### Core Functionality
 - **Interactive Weather Map**: Real-time weather radar with multiple API fallbacks
