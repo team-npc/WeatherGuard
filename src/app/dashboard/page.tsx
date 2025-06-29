@@ -49,6 +49,7 @@ interface LocationResult {
 const EnhancedLocationSearch = require('@/components/Map/EnhancedLocationSearch').default;
 const AlertsDropdown = require('@/components/Alerts/AlertsDropdown').default;
 const TrafficInfo = require('@/components/Map/TrafficInfo').default;
+const AuthModal = require('@/components/Auth/AuthModal').default;
 
 export default function Dashboard() {
   // For demo purposes, we'll use a mock user
@@ -60,6 +61,7 @@ export default function Dashboard() {
 
   // Demo mode - no tour or auth needed
   const [showAlertsDropdown, setShowAlertsDropdown] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
   
   // Layer visibility state
   const [showWeatherRadar, setShowWeatherRadar] = useState(false);
@@ -1226,10 +1228,7 @@ Shared via WeatherGuard Safety App`;
               </button>
 
               <button
-                onClick={() => {
-                  // Add login functionality here
-                  alert('Login functionality coming soon!');
-                }}
+                onClick={() => setShowAuthModal(true)}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
               >
                 Log In
@@ -1924,6 +1923,11 @@ Shared via WeatherGuard Safety App`;
         </div>
       )}
 
+      {/* Auth Modal */}
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+      />
 
     </div>
   );
