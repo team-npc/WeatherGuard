@@ -141,26 +141,67 @@ server/
 
 ## 🔧 Configuration
 
-### Environment Variables
+### Environment Variables Setup
 
-```bash
-# Weather API Keys (optional for demo)
-OPENWEATHER_API_KEY=your_openweather_api_key
-WEATHERAPI_KEY=your_weatherapi_key
+1. **Copy the environment template:**
+   ```bash
+   cp .env.example .env.local
+   ```
 
-# Server Configuration
-PORT=3001
-NODE_ENV=development
+2. **Edit `.env.local` with your API keys:**
+   ```bash
+   # Weather API Keys
+   OPENWEATHER_API_KEY=your_openweather_api_key_here
+   WEATHERAPI_KEY=your_weatherapi_key_here
 
-# Database
-DATABASE_PATH=./weather-safety.db
+   # Next.js Public Environment Variables
+   NEXT_PUBLIC_OPENWEATHER_API_KEY=your_openweather_api_key_here
+   NEXT_PUBLIC_WEATHERAPI_KEY=your_weatherapi_key_here
 
-# External APIs
-OPENWEATHER_BASE_URL=https://api.openweathermap.org/data/2.5
-WEATHERAPI_BASE_URL=https://api.weatherapi.com/v1
-NWS_BASE_URL=https://api.weather.gov
-USGS_EARTHQUAKE_URL=https://earthquake.usgs.gov/fdsnws/event/1
-```
+   # Firebase Configuration (get from Firebase Console)
+   NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key_here
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project_id.firebasestorage.app
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+   NEXT_PUBLIC_FIREBASE_APP_ID=your_firebase_app_id
+   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your_measurement_id
+
+   # Application Settings
+   NODE_ENV=development
+   PORT=3000
+   DATABASE_PATH=./weather-safety.db
+   ```
+
+⚠️ **Important:** Never commit `.env.local` to version control. It contains sensitive API keys.
+
+### GitHub Repository Setup
+
+If you're setting up this repository:
+
+1. **For repository owners:**
+   ```bash
+   git remote add origin https://github.com/team-npc/WeatherGuard.git
+   git push -u origin master
+   ```
+
+2. **For contributors without write access:**
+   - Fork the repository to your GitHub account
+   - Clone your fork:
+     ```bash
+     git clone https://github.com/YOUR_USERNAME/WeatherGuard.git
+     ```
+   - Set up the original repository as upstream:
+     ```bash
+     git remote add upstream https://github.com/team-npc/WeatherGuard.git
+     ```
+
+3. **Using Personal Access Token (if needed):**
+   - Generate a token at: https://github.com/settings/tokens
+   - Use token as password when pushing:
+     ```bash
+     git push https://YOUR_USERNAME:YOUR_TOKEN@github.com/team-npc/WeatherGuard.git
+     ```
 
 ### API Keys Setup
 
