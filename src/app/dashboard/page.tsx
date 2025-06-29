@@ -1,6 +1,7 @@
 'use client';
 
 import MapControls, { CompactMapControls } from '@/components/Map/MapControls';
+import Logo from '@/components/UI/Logo';
 import {
     DisasterEvent,
     LiveLocation,
@@ -1147,14 +1148,8 @@ Shared via WeatherGuard Safety App`;
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-3">
-              <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white text-xl">⛈️</span>
-                </div>
-                <div>
-                  <h1 className="text-xl font-bold text-gray-900">WeatherGuard</h1>
-                  <p className="text-xs text-blue-600 font-medium">Safety First</p>
-                </div>
+              <Link href="/" className="hover:opacity-80 transition-opacity">
+                <Logo size="md" />
               </Link>
             </div>
 

@@ -219,14 +219,17 @@ export default function Home() {
             <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 md:p-12 text-center">
               <div className="max-w-4xl mx-auto">
                 <div className="bg-gray-800 rounded-2xl p-8 mb-8 border border-gray-700">
-                  <div className="aspect-video bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
-                    <div className="text-center text-white">
-                      <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <div className="w-0 h-0 border-l-[12px] border-l-white border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1"></div>
-                      </div>
-                      <h3 className="text-2xl font-bold mb-2">Interactive Demo</h3>
-                      <p className="text-blue-100">Click to explore the full platform</p>
-                    </div>
+                  <div className="aspect-video bg-black rounded-xl overflow-hidden mb-6">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src="https://www.youtube.com/embed/Jg_LQjportQ?autoplay=1&mute=1&loop=1&playlist=Jg_LQjportQ"
+                      title="WeatherGuard Interactive Demo"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="w-full h-full"
+                    ></iframe>
                   </div>
                   <div className="grid grid-cols-3 gap-4 text-white text-sm">
                     <div className="bg-gray-700 rounded-lg p-3">
@@ -414,29 +417,29 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Stats */}
+            {/* Platform Capabilities */}
             <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-8 md:p-12">
               <div className="text-center mb-12">
-                <h3 className="text-3xl font-bold text-gray-900 mb-4">Trusted by Families Worldwide</h3>
-                <p className="text-gray-600">Real impact in emergency situations</p>
+                <h3 className="text-3xl font-bold text-gray-900 mb-4">Built for Emergency Preparedness</h3>
+                <p className="text-gray-600">Comprehensive safety platform designed for real-world emergencies</p>
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div>
-                  <div className="text-4xl font-bold text-blue-600 mb-2">10K+</div>
-                  <div className="text-gray-600">Families Protected</div>
+                  <div className="text-4xl font-bold text-blue-600 mb-2">Global</div>
+                  <div className="text-gray-600">Weather Coverage</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-green-600 mb-2">50M+</div>
-                  <div className="text-gray-600">Safety Checks</div>
+                  <div className="text-4xl font-bold text-green-600 mb-2">Real-time</div>
+                  <div className="text-gray-600">Disaster Monitoring</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-purple-600 mb-2">99.9%</div>
-                  <div className="text-gray-600">Alert Accuracy</div>
+                  <div className="text-4xl font-bold text-purple-600 mb-2">Offline</div>
+                  <div className="text-gray-600">Functionality</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-orange-600 mb-2">24/7</div>
-                  <div className="text-gray-600">Monitoring</div>
+                  <div className="text-4xl font-bold text-orange-600 mb-2">Multi-API</div>
+                  <div className="text-gray-600">Resilience</div>
                 </div>
               </div>
             </div>
@@ -448,44 +451,41 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                Don&apos;t Wait for the
-                <span className="block text-yellow-300">Next Emergency</span>
+                <strong>Don&apos;t Wait for the
+                <span className="block text-yellow-300">Next Emergency</span></strong>
               </h2>
               <p className="text-xl md:text-2xl text-blue-100 mb-12 leading-relaxed">
-                Join thousands of families who trust WeatherGuard to keep their loved ones safe.
-                Start protecting what matters most today.
+                Experience the future of family safety with our comprehensive emergency preparedness platform.
+                Try the demo and see how WeatherGuard can protect what matters most.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+              <div className="flex justify-center mb-12">
                 <Link
                   href="/dashboard"
-                  className="group bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center gap-3"
+                  className="group bg-white text-blue-600 px-10 py-5 rounded-full text-xl font-bold hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center gap-3"
                 >
-                  <span>Start Free Demo</span>
-                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  <span>Try Live Demo</span>
+                  <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-blue-600 transition-all duration-300 flex items-center justify-center gap-3">
-                  <span>Schedule Demo Call</span>
-                </button>
               </div>
 
-              {/* Trust Indicators */}
+              {/* Platform Features */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                  <div className="text-3xl font-bold text-yellow-300 mb-2">24/7</div>
-                  <div className="text-blue-100 text-sm">Emergency Monitoring</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-yellow-300 mb-2">99.9%</div>
-                  <div className="text-blue-100 text-sm">System Uptime</div>
-                </div>
                 <div>
                   <div className="text-3xl font-bold text-yellow-300 mb-2">Global</div>
                   <div className="text-blue-100 text-sm">Weather Coverage</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-yellow-300 mb-2">Instant</div>
-                  <div className="text-blue-100 text-sm">Safety Alerts</div>
+                  <div className="text-3xl font-bold text-yellow-300 mb-2">Multi-API</div>
+                  <div className="text-blue-100 text-sm">Data Sources</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-yellow-300 mb-2">Offline</div>
+                  <div className="text-blue-100 text-sm">Functionality</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-yellow-300 mb-2">Real-time</div>
+                  <div className="text-blue-100 text-sm">Disaster Alerts</div>
                 </div>
               </div>
             </div>
@@ -499,15 +499,8 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8">
             {/* Brand */}
             <div className="md:col-span-2">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="relative">
-                  <Shield className="h-10 w-10 text-blue-400" />
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full"></div>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold">WeatherGuard</h3>
-                  <p className="text-gray-400 text-sm">Emergency Safety Platform</p>
-                </div>
+              <div className="mb-6">
+                <Logo size="lg" className="[&_.text-gray-900]:text-white [&_.text-blue-600]:text-blue-400" />
               </div>
               <p className="text-gray-300 mb-6 max-w-md">
                 The world&apos;s most comprehensive emergency safety platform. Protecting families worldwide with real-time weather monitoring, location tracking, and instant threat assessment.
