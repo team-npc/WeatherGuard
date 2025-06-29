@@ -328,19 +328,52 @@ npm run build:server
 
 ## 🤝 Contributing
 
+### Team NPC
+
+**Core Development Team:**
+- **Aditya** - Lead Developer & Project Architect
+- **Sunayana** - Frontend Developer & User Experience
+- **Rohiith** - UI/UX Developer & Design Systems
+
 ### Development Workflow
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes with proper testing
 4. Add tests for new functionality
-5. Ensure all tests pass
-6. Submit a pull request
+5. Ensure all tests pass (`npm test`)
+6. Commit your changes (`git commit -m 'feat: Add amazing feature'`)
+7. Push to the branch (`git push origin feature/amazing-feature`)
+8. Submit a pull request
 
-### Code Style
-- Use TypeScript for type safety
-- Follow ESLint configuration
-- Use Prettier for code formatting
-- Write meaningful commit messages
+### Code Style & Standards
+- **TypeScript**: Use TypeScript for type safety and better development experience
+- **ESLint**: Follow the project's ESLint configuration for code quality
+- **Prettier**: Use Prettier for consistent code formatting
+- **Commit Messages**: Follow conventional commit format (`feat:`, `fix:`, `docs:`, etc.)
+- **Testing**: Write comprehensive tests for new features and bug fixes
+- **Documentation**: Update documentation for any new features or API changes
+
+### Getting Started for Contributors
+1. **Setup Development Environment**:
+   ```bash
+   git clone https://github.com/team-npc/WeatherGuard.git
+   cd WeatherGuard
+   npm install
+   cp .env.example .env.local
+   # Add your API keys to .env.local
+   npm run dev
+   ```
+
+2. **Run Tests**:
+   ```bash
+   npm test
+   npm run test:coverage
+   ```
+
+3. **Build for Production**:
+   ```bash
+   npm run build
+   ```
 
 ## 📄 License
 
